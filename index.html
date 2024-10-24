@@ -8,7 +8,9 @@
 </head>
 <body>
     <div class="container">
-        <h2>Gerenciamento de Chamados</h2>
+        <img src="img/tecnosolve.png" alt="logo" class="header-image">
+        <h2>GERENCIAMENTO DE CHAMADOS</h2>
+        
 
         <!-- Botões para alternar entre o formulário e a contagem -->
         <button id="toggleForm">Mostrar Formulário</button>
@@ -25,30 +27,30 @@
             <div class="field">
                 <label for="sistema">Sistema:</label>
                 <select id="sistema">
-                    <option value="">Selecione</option>
-                    <option value="GENESIS_CRF">GENESIS_CRF</option>
-                    <option value="GESPROM_REB">GESPROM_REB</option>
-                    <option value="ATHENA">ATHENA</option>
-                    <option value="ECOMMERCE">ECOMMERCE</option>
-                    <option value="SCS">SCS</option>
-                    <option value="DESCONHECIDO">DESCONHECIDO</option>
-                    <option value="PEGASUS_CRF">PEGASUS_CRF</option>
-                    <option value="SCS/Login">SCS/Login</option>
-                    <option value="Aplicativo Mobile">Aplicativo Mobile</option>
+                    <option value="Acordos Contratos">Acordos Contratos</option>
+                    <option value="APLICATIVO MOBILE">Aplicativo Mobile</option>
                     <option value="ARS">ARS</option>
                     <option value="Cashback">Cashback</option>
                     <option value="CTF">CTF</option>
                     <option value="Data Critica">Data Crítica</option>
                     <option value="Delivery">Delivery</option>
-                    <option value="Gemini">Gemini</option>
-                    <option value="Gênesis">Gênesis</option>
+                    <option value="DESCONHECIDO">DESCONHECIDO</option>
+                    <option value="ECOMMERCE">ECOMMERCE</option>
+                    <option value="FILIPE ALMEIDA">Filipe</option>
+                    <option value="GENESIS_CRF">GENESIS_CRF</option>
+                    <option value="GESPROM_BIG">Gesprom Big</option>
+                    <option value="GESPROM_REB">GESPROM_REB</option>
+                    <option value="Gesprom Rebaixa">Gesprom Rebaixa</option>
                     <option value="Gescom">Gescom</option>
-                    <option value="Gênesis Carrefour">Gênesis Carrefour</option>
+                    <option value="GÊNESIS">Gênesis</option>
+                    <option value="GÊNESIS CARREFOUR">Gênesis Carrefour</option>
+                    <option value="Gemini">Gemini</option>
                     <option value="Impressao Centralizada">Impressão Centralizada</option>
-                    <option value="Nanis">Nanis</option>
                     <option value="LiveView">LiveView</option>
                     <option value="Menu de Atendimento Gescom">Menu de Atendimento Gescom</option>
+                    <option value="Nanis">Nanis</option>
                     <option value="PDV">PDV</option>
+                    <option value="PLURIX">PLURIX</option>
                     <option value="Pricefy">Pricefy</option>
                     <option value="Qlikview">Qlikview</option>
                     <option value="Rebaixa">Rebaixa</option>
@@ -58,14 +60,13 @@
                     <option value="SAD">SAD</option>
                     <option value="Salesforce">Salesforce</option>
                     <option value="SCI">SCI</option>
+                    <option value="SCS">SCS</option>
+                    <option value="SCS/Login">SCS/Login</option>
                     <option value="Storex">Storex</option>
                     <option value="Televendas">Televendas</option>
                     <option value="Zabbix">Zabbix</option>
-                    <option value="Gesprom Rebaixa">Gesprom Rebaixa</option>
-                    <option value="Gesprom Big">Gesprom Big</option>
                     <option value="Zabbix Desastre">Zabbix Desastre</option>
                     <option value="Gerenciador Preço Fixo">Gerenciador Preço Fixo</option>
-                    <option value="Acordos Contratos">Acordos Contratos</option>
                     <option value="Pré-Cadastro">Pré-Cadastro</option>
                 </select>
             </div>
@@ -96,8 +97,8 @@
                     <option value="">Selecione</option>
                     <option value="pendente">Pendente usuário</option>
                     <option value="analise">Em análise</option>
-                    <option value="nivel3">3° nível</option>
-                    <option value="eta">ETA</option>
+                    <option value="3nivel">3° nível</option>
+                    <option value="eta">ETA de Análise</option>
                     <option value="etaCorrecao">ETA de Correção</option>
                 </select>
             </div>
@@ -111,8 +112,21 @@
             </div>
             <div class="field">
                 <label for="responsavel">Responsável:</label>
-                <input type="text" id="responsavel" placeholder="Ex: @anthony">
+                <select id="responsavel">
+                    <option value="">Selecione</option>
+                    <option value="Rafael Dantas">Rafael Dantas</option>
+                    <option value="Rafael Corrêa">Rafael Corrêa</option>
+                    <option value="Filipe Almeida">Filipe</option>
+                    <option value="Joas">Joás</option>
+                    <option value="Andre">Andre</option>
+                    <option value="Pedro">Pedro</option>
+                    <option value="Joel">Joel</option>
+                    <option value="Daniel">Daniel</option>
+                    <option value="Eduardo">Eduardo</option>
+                    <option value="Anthony">Anthony</option>
+                </select>
             </div>
+            
             <button id="addChamado">Adicionar Chamado</button>
         </div>
 
