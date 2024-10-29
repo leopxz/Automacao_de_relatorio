@@ -15,6 +15,7 @@ Abra index.html em um navegador para visualizar o gerador de relatórios. A inte
 ## Estrutura
 
 css/: Arquivos de estilo.<br>
-img/: Imagens utilizadas no relatório.<br>
+img/: Logo utilizada no relatório.<br>
 js/: Scripts JavaScript para funcionalidade.<br>
-index.html: Página principal do projeto.<br>
+index.html: Página de login.<br>
+gerenciador.html: Página principal do projeto<br>
