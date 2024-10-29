@@ -1,148 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Chamados</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Página de Login</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div class="container">
-        <img src="img/tecnosolve.png" alt="logo" class="header-image">
-        <h2>GERENCIAMENTO DE CHAMADOS</h2>
-        
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" required>
 
-        <!-- Botões para alternar entre o formulário e a contagem -->
-        <button id="toggleForm">Mostrar Formulário</button>
-        <button id="toggleContagem">Mostrar Contagem</button>
-       
+            <label for="password">Senha:</label>
+            <input type="password" id="password" required>
 
-
-        <!-- Formulário de cadastro de chamados -->
-        <div id="formularioChamados">
-            <div class="field">
-                <label for="codigo">Código:</label>
-                <input type="text" id="codigo" placeholder="Ex: INC-1172385">
-            </div>
-            <div class="field">
-                <label for="sistema">Sistema:</label>
-                <select id="sistema">
-                    <option value="Acordos Contratos">Acordos Contratos</option>
-                    <option value="APLICATIVO MOBILE">Aplicativo Mobile</option>
-                    <option value="ARS">ARS</option>
-                    <option value="Cashback">Cashback</option>
-                    <option value="CTF">CTF</option>
-                    <option value="Data Critica">Data Crítica</option>
-                    <option value="Delivery">Delivery</option>
-                    <option value="DESCONHECIDO">DESCONHECIDO</option>
-                    <option value="ECOMMERCE">ECOMMERCE</option>
-                    <option value="FILIPE ALMEIDA">Filipe</option>
-                    <option value="GENESIS_CRF">GENESIS_CRF</option>
-                    <option value="GESPROM_BIG">Gesprom Big</option>
-                    <option value="GESPROM_REB">GESPROM_REB</option>
-                    <option value="Gesprom Rebaixa">Gesprom Rebaixa</option>
-                    <option value="Gescom">Gescom</option>
-                    <option value="GÊNESIS">Gênesis</option>
-                    <option value="GÊNESIS CARREFOUR">Gênesis Carrefour</option>
-                    <option value="Gemini">Gemini</option>
-                    <option value="Impressao Centralizada">Impressão Centralizada</option>
-                    <option value="LiveView">LiveView</option>
-                    <option value="Menu de Atendimento Gescom">Menu de Atendimento Gescom</option>
-                    <option value="Nanis">Nanis</option>
-                    <option value="PDV">PDV</option>
-                    <option value="PLURIX">PLURIX</option>
-                    <option value="Pricefy">Pricefy</option>
-                    <option value="Qlikview">Qlikview</option>
-                    <option value="Rebaixa">Rebaixa</option>
-                    <option value="Reset de Senha AD">Reset de Senha AD</option>
-                    <option value="ROI">ROI</option>
-                    <option value="Rotinas Noturnas">Rotinas Noturnas</option>
-                    <option value="SAD">SAD</option>
-                    <option value="Salesforce">Salesforce</option>
-                    <option value="SCI">SCI</option>
-                    <option value="SCS">SCS</option>
-                    <option value="SCS/Login">SCS/Login</option>
-                    <option value="Storex">Storex</option>
-                    <option value="Televendas">Televendas</option>
-                    <option value="Zabbix">Zabbix</option>
-                    <option value="Zabbix Desastre">Zabbix Desastre</option>
-                    <option value="Gerenciador Preço Fixo">Gerenciador Preço Fixo</option>
-                    <option value="Pré-Cadastro">Pré-Cadastro</option>
-                </select>
-            </div>
-            
-            <div class="field">
-                <label for="chamado">Chamado:</label>
-                <input type="text" id="chamado" placeholder="Descreva o chamado">
-            </div>
-            <div class="field">
-                <label for="ts">Responsabilidade TS?</label>
-                <select id="ts">
-                    <option value="">Selecione</option>
-                    <option value="sim">SIM</option>
-                    <option value="nao">NÃO</option>
-                </select>
-            </div>
-            <div class="field">
-                <label for="chegada">Chegada na fila:</label>
-                <input type="date" id="chegada">
-            </div>
-            <div class="field">
-                <label for="ultima-interacao">Última interação:</label>
-                <input type="date" id="ultima-interacao">
-            </div>
-            <div class="field">
-                <label for="status">Status:</label>
-                <select id="status">
-                    <option value="">Selecione</option>
-                    <option value="pendente">Pendente usuário</option>
-                    <option value="analise">Em análise</option>
-                    <option value="3nivel">3° nível</option>
-                    <option value="eta">ETA de Análise</option>
-                    <option value="etaCorrecao">ETA de Correção</option>
-                </select>
-            </div>
-            <div class="field" id="eta-field" style="display: none;">
-                <label for="eta-date">Data ETA:</label>
-                <input type="date" id="eta-date">
-            </div>
-            <div class="field" id="eta-correcao-field" style="display: none;">
-                <label for="eta-correcao-date">Data ETA de Correção:</label>
-                <input type="date" id="eta-correcao-date">
-            </div>
-            <div class="field">
-                <label for="responsavel">Responsável:</label>
-                <select id="responsavel">
-                    <option value="">Selecione</option>
-                    <option value="Rafael Dantas">Rafael Dantas</option>
-                    <option value="Rafael Corrêa">Rafael Corrêa</option>
-                    <option value="Filipe Almeida">Filipe</option>
-                    <option value="Joas">Joás</option>
-                    <option value="Andre">Andre</option>
-                    <option value="Pedro">Pedro</option>
-                    <option value="Joel">Joel</option>
-                    <option value="Daniel">Daniel</option>
-                    <option value="Eduardo">Eduardo</option>
-                    <option value="Anthony">Anthony</option>
-                </select>
-            </div>
-            
-            <button id="addChamado">Adicionar Chamado</button>
-        </div>
-
-        <!-- Contagem de Chamados -->
-        <div id="contagemChamados" style="display: none;">
-            <h3>Contagem de Chamados:</h3>
-            <div id="contagemContainer"></div>
-        </div>
-
-        <h3>Chamados Cadastrados:</h3>
-        <div id="chamadosContainer">
-            <!-- Chamados serão adicionados aqui -->
-        </div>
+            <button type="submit">Entrar</button>
+            <p id="message"></p>
+        </form>
     </div>
-    
-    <!-- Inclua este script para manipular os chamados -->
-    <script src="js/script.js"></script>
+
+  <script src="js/index-script.js"></script>
 </body>
 </html>

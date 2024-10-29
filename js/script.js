@@ -1,3 +1,5 @@
+
+
 // Variáveis para os elementos de interface
 const toggleFormBtn = document.getElementById('toggleForm');
 const toggleContagemBtn = document.getElementById('toggleContagem');
@@ -14,12 +16,11 @@ const ultimaInteracaoInput = document.getElementById('ultima-interacao');
 const statusInput = document.getElementById('status');
 const etaField = document.getElementById('eta-field');
 const etaDateInput = document.getElementById('eta-date');
-const etaCorrecaoField = document.getElementById('eta-correcao-field');
-const etaCorrecaoDateInput = document.getElementById('eta-correcao-date');
 const tsInput = document.getElementById('ts');
 const responsavelInput = document.getElementById('responsavel');
 const addChamadoBtn = document.getElementById('addChamado');
 const chamadosContainer = document.getElementById('chamadosContainer');
+
 
 // Variável para armazenar a contagem de chamados e os de TS por sistema
 const contagemSistemas = {
@@ -66,18 +67,12 @@ const contagemSistemas = {
         'Pré-Cadastro': { total: 0, ts: 0 }
     };
     
-
 // Mostrar ou esconder os campos ETA com base no status selecionado
 statusInput.addEventListener('change', function () {
     if (statusInput.value === 'eta') {
         etaField.style.display = 'block';
-        etaCorrecaoField.style.display = 'none';
-    } else if (statusInput.value === 'etaCorrecao') {
-        etaCorrecaoField.style.display = 'block';
-        etaField.style.display = 'none';
     } else {
         etaField.style.display = 'none';
-        etaCorrecaoField.style.display = 'none';
     }
 });
 
@@ -94,10 +89,6 @@ toggleContagemBtn.addEventListener('click', function() {
         contagemChamadosDiv.style.display = 'none';   // Oculta a contagem
     }
 });
-
-
-
-
 
 // Função para criar um novo chamado e adicioná-lo ao container
 function addChamado() {
@@ -116,7 +107,6 @@ function addChamado() {
      console.log("Última interação:", ultimaInteracaoInput.value);
      console.log("Status:", statusInput.value);
      console.log("Data ETA:", etaDateInput.value);
-     console.log("Data ETA de Correção:", etaCorrecaoDateInput.value);
      console.log("Responsável:", responsavelInput.value);
 
     // Cria um div para armazenar o chamado
@@ -124,8 +114,8 @@ function addChamado() {
     chamadoDiv.classList.add('chamado');
 
     // Preenche o conteúdo do div com os dados do formulário
-    const etaText = etaDateInput.value ? `<p>Data ETA: ${etaDateInput.value}</p>` : '';
-    const etaCorrecaoText = etaCorrecaoDateInput.value ? `<p>Data ETA de Correção: ${etaCorrecaoDateInput.value}</p>` : '';
+    
+    const etaText = etaDateInput.value ? `<p>Data ETA: ${formatarData(etaDateInput.value)}</p>` : '';
     const responsavel = responsavelInput.value; // Obtém o valor do responsável
     
     chamadoDiv.innerHTML = `
@@ -137,22 +127,15 @@ function addChamado() {
         <p>Última interação: ${ultimaInteracaoInput.value}</p>
         <p>Status: ${statusInput.value}</p>
         ${etaText}
-        ${etaCorrecaoText}
         <p>Responsável: ${responsavel}</p> 
         <button class="editChamado">Editar</button>
         <button class="deleteChamado">Excluir</button>
     `;
 
-    // Adiciona o novo chamado ao container de chamados
     chamadosContainer.appendChild(chamadoDiv);
-
-    // Limpa os campos do formulário após adicionar o chamado
     limparFormulario();
-
-    // Atualiza a contagem após adicionar um novo chamado
     atualizarContagem();
 
-    // Adiciona eventos para os botões de editar e excluir
     const editBtn = chamadoDiv.querySelector('.editChamado');
     const deleteBtn = chamadoDiv.querySelector('.deleteChamado');
 
@@ -165,9 +148,6 @@ function addChamado() {
     });
 }
 
-
-
-
 // Função para limpar o formulário após adicionar um chamado
 function limparFormulario() {
     codigoInput.value = '';
@@ -177,16 +157,13 @@ function limparFormulario() {
     ultimaInteracaoInput.value = '';
     statusInput.value = '';
     etaDateInput.value = '';
-    etaCorrecaoDateInput.value = '';
     tsInput.value = '';
     responsavelInput.value = '';
     etaField.style.display = 'none';
-    etaCorrecaoField.style.display = 'none';
 }
 
 // Função para editar um chamado
 function editarChamado(chamadoDiv) {
-    // Define os valores atuais nos campos de entrada
     codigoInput.value = chamadoDiv.querySelector('h4').textContent;
     sistemaInput.value = chamadoDiv.querySelector('p:nth-of-type(1)').textContent.split(': ')[1];
     chamadoInput.value = chamadoDiv.querySelector('p:nth-of-type(2)').textContent.split(': ')[1];
@@ -195,18 +172,10 @@ function editarChamado(chamadoDiv) {
     ultimaInteracaoInput.value = chamadoDiv.querySelector('p:nth-of-type(5)').textContent.split(': ')[1];
     statusInput.value = chamadoDiv.querySelector('p:nth-of-type(6)').textContent.split(': ')[1];
 
-    // Se houver data ETA, preencher o campo correspondente
     const etaText = chamadoDiv.querySelector('p:nth-of-type(7)');
     etaDateInput.value = etaText ? etaText.textContent.split(': ')[1] : '';
 
-    // Se houver data ETA de correção, preencher o campo correspondente
-    const etaCorrecaoText = chamadoDiv.querySelector('p:nth-of-type(8)');
-    etaCorrecaoDateInput.value = etaCorrecaoText ? etaCorrecaoText.textContent.split(': ')[1] : '';
-
-    // Mostra o formulário
     formularioChamados.style.display = 'block';
-
-    // Remove o chamado atual
     excluirChamado(chamadoDiv);
 }
 
@@ -216,13 +185,12 @@ function excluirChamado(chamadoDiv) {
     atualizarContagem();
 }
 
-
 // Função para atualizar a contagem de chamados por sistema e TS
 function atualizarContagem() {
     const chamados = chamadosContainer.querySelectorAll('.chamado');
     let totalChamados = 0; // Variável para contar o total de chamados
     let totalComETA = 0;   // Variável para contar o total com ETA
-    let totalComETACorrecao = 0; // Variável para contar o total com ETA de Correção
+    
 
     // Zera a contagem de sistemas
     for (const sistema in contagemSistemas) {
@@ -233,20 +201,13 @@ function atualizarContagem() {
     // Atualiza a contagem para cada chamado
     chamados.forEach(function(chamado) {
         const sistema = chamado.querySelector('p:nth-of-type(1)').textContent.split(': ')[1];
-        const ts = chamado.querySelector('p:nth-of-type(3)').textContent.split(': ')[1].trim().toUpperCase(); // Normaliza o valor de TS
-        const status = chamado.querySelector('p:nth-of-type(6)').textContent.split(': ')[1]; // Obtém o status do chamado
-        const etaCorrecao = chamado.querySelector('p:nth-of-type(8)'); // Obtém o ETA de Correção
+        const ts = chamado.querySelector('p:nth-of-type(3)').textContent.split(': ')[1].trim().toUpperCase();
 
         contagemSistemas[sistema].total++;
-        totalChamados++; // Incrementa o contador de chamados
+        totalChamados++;
 
         if (ts === 'SIM') {
             contagemSistemas[sistema].ts++;
-        }
-
-        // Verifica se há ETA de correção e incrementa a contagem correta
-        if (status === 'etaCorrecao' && etaCorrecao) {
-            totalComETACorrecao++; // Incrementa a contagem de ETA de Correção
         }
     });
 
@@ -258,17 +219,15 @@ function atualizarContagem() {
         }
     }
 
-    // Atualiza as contagens totais com base no ETA de correção
     contagemContainer.innerHTML += `<p>Total de Chamados: ${totalChamados}</p>`;
-    contagemContainer.innerHTML += `<p>Total com ETA de Correção: ${totalComETACorrecao}</p>`;
-}
 
+}
 
 // Função para atualizar a contagem de chamados por sistema, TS e ETA
 function atualizarContagem() {
     const chamados = chamadosContainer.querySelectorAll('.chamado');
     let totalChamados = 0;
-    let totalEtaAnalise = 0, totalEtaCorrecao = 0, totalPendente = 0, total3Nivel = 0;
+    let totalEtaAnalise = 0, totalPendente = 0, total3Nivel = 0;
     let etaPorData = {}, etaCorrecaoPorData = {};
 
     // Zera a contagem de sistemas
@@ -283,8 +242,6 @@ function atualizarContagem() {
         const ts = chamado.querySelector('p:nth-of-type(3)').textContent.split(': ')[1].trim().toUpperCase();
         const status = chamado.querySelector('p:nth-of-type(6)').textContent.split(': ')[1];
         const eta = chamado.querySelector('p:nth-of-type(7)') ? chamado.querySelector('p:nth-of-type(7)').textContent.split(': ')[1] : '';
-        const etaCorrecao = chamado.querySelector('p:nth-of-type(8)') ? chamado.querySelector('p:nth-of-type(8)').textContent.split(': ')[1] : '';
-
         
         // Contagem por sistema
         contagemSistemas[sistema].total++;
@@ -294,19 +251,14 @@ function atualizarContagem() {
             contagemSistemas[sistema].ts++;
         }
 
-        // Contagem por status ETA e ETA de Correção
+        // Contagem por status ETA 
         if (status === 'eta') {
             totalEtaAnalise++;
             if (eta) {
                 if (!etaPorData[eta]) etaPorData[eta] = 0;
                 etaPorData[eta]++;
             }
-        } else if (status === 'etaCorrecao') {
-            totalEtaCorrecao++;
-            if (etaCorrecao) {
-                if (!etaCorrecaoPorData[etaCorrecao]) etaCorrecaoPorData[etaCorrecao] = 0;
-                etaCorrecaoPorData[etaCorrecao]++;
-            }
+        
         } else if (status === 'pendente') {
             totalPendente++;
         } else if (status === '3nivel') {
@@ -314,7 +266,7 @@ function atualizarContagem() {
         }
     });
 
-    // Atualiza o container de contagem
+
     contagemContainer.innerHTML = '';
 
     // Contagem por sistema
@@ -323,25 +275,24 @@ function atualizarContagem() {
             contagemContainer.innerHTML += `<p>${sistema}: ${contagemSistemas[sistema].total} chamados (TS: ${contagemSistemas[sistema].ts})</p>`;
         }
     }
-
-
     
     // Contagem total de chamados
     contagemContainer.innerHTML += `<p><strong>Total de Chamados: ${totalChamados}</strong></p>`;
 
     // Contagem de ETA
-    contagemContainer.innerHTML += `<p><strong>Total com ETA em análise: ${totalEtaAnalise}</strong></p>`;
+    contagemContainer.innerHTML += `<p><strong>Total com ETA: ${totalEtaAnalise}</strong></p>`;
     for (const data in etaPorData) {
         contagemContainer.innerHTML += `<p>Total com ETA ${data}: ${etaPorData[data]}</p>`;
-    }
-
-    // Contagem de ETA de Correção
-    contagemContainer.innerHTML += `<p><strong>Total com ETA de Correção: ${totalEtaCorrecao}</strong></p>`;
-    for (const data in etaCorrecaoPorData) {
-        contagemContainer.innerHTML += `<p>Total com ETA de Correção ${data}: ${etaCorrecaoPorData[data]}</p>`;
     }
 
     // Contagem de pendente e 3° nível
     contagemContainer.innerHTML += `<p>Total pendente usuário: ${totalPendente}</p>`;
     contagemContainer.innerHTML += `<p>Total 3° nível: ${total3Nivel}</p>`;
 }
+
+// Função para formatar data de YYYY-MM-DD para DD-MM-YYYY
+function formatarData(data) {
+    const [ano, mes, dia] = data.split('-');
+    return `${dia}-${mes}-${ano}`;
+}
+
