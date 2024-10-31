@@ -24,7 +24,7 @@ const chamadosContainer = document.getElementById('chamadosContainer');
 
 // Variável para armazenar a contagem de chamados e os de TS por sistema
 const contagemSistemas = {
-
+        'Athena': { total: 0, ts: 0 },
         'Athena': { total: 0, ts: 0 },
         'Acordos Contratos': { total: 0, ts: 0 },
         'APLICATIVO MOBILE': { total: 0, ts: 0 },
