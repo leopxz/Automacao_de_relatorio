@@ -24,11 +24,11 @@ const chamadosContainer = document.getElementById('chamadosContainer');
 
 // Variável para armazenar a contagem de chamados e os de TS por sistema
 const contagemSistemas = {
-        'Athena': { total: 0, ts: 0 },
-        'Athena': { total: 0, ts: 0 },
+        'Selecione o sistema': { total: 0, ts: 0 },
         'Acordos Contratos': { total: 0, ts: 0 },
         'APLICATIVO MOBILE': { total: 0, ts: 0 },
         'ARS': { total: 0, ts: 0 },
+        'Athena': { total: 0, ts: 0 },
         'Cashback': { total: 0, ts: 0 },
         'CTF': { total: 0, ts: 0 },
         'Data Critica': { total: 0, ts: 0 },
@@ -44,10 +44,11 @@ const contagemSistemas = {
         'GÊNESIS CARREFOUR': { total: 0, ts: 0 },
         'Gemini': { total: 0, ts: 0 },
         'Impressao Centralizada': { total: 0, ts: 0 },
+        'Janis': { total: 0, ts: 0 },
         'LiveView': { total: 0, ts: 0 },
         'Menu de atendimento Gescom': { total: 0, ts: 0 },
-        'Nanis': { total: 0, ts: 0 },
         'PDV': { total: 0, ts: 0 },
+        'PEGASUS': { total: 0, ts: 0 }, 
         'PLURIX': { total: 0, ts: 0 }, 
         'Pricefy': { total: 0, ts: 0 },
         'Qlikview': { total: 0, ts: 0 },
@@ -70,7 +71,7 @@ const contagemSistemas = {
     
 // Mostrar ou esconder os campos ETA com base no status selecionado
 statusInput.addEventListener('change', function () {
-    if (statusInput.value === 'eta') {
+    if (statusInput.value === 'ETA') {
         etaField.style.display = 'block';
     } else {
         etaField.style.display = 'none';
